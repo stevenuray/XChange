@@ -8,6 +8,7 @@ import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.dto.account.AccountInfo;
 import org.knowm.xchange.exceptions.NotAvailableFromExchangeException;
 import org.knowm.xchange.quoine.QuoineAdapters;
+import org.knowm.xchange.quoine.dto.account.FiatAccount;
 import org.knowm.xchange.quoine.dto.account.QuoineAccountInfo;
 import org.knowm.xchange.quoine.dto.account.QuoineTradingAccountInfo;
 import org.knowm.xchange.service.account.AccountService;
@@ -36,14 +37,23 @@ public class QuoineAccountService extends QuoineAccountServiceRaw implements Acc
 
   @Override
   public AccountInfo getAccountInfo() throws IOException {
-    if (useMargin) {
+    /**
+     * Account information in Quoine is complicated. If using margin it's probably best
+     * to separately call `getQuoineTradingAccountInfo` in order to get position exposures and pnl.
+     *
+     * However for account valuation purposes it is probably better to always use getQuoineFiatAccountInfo
+     * which gives a total balance, including the margin activity.
+     */
+
+
+/*    if (useMargin) {
       QuoineTradingAccountInfo[] quoineTradingAccountInfo = getQuoineTradingAccountInfo();
       return new AccountInfo(QuoineAdapters.adaptTradingWallet(quoineTradingAccountInfo));
 
-    } else {
-      QuoineAccountInfo quoineAccountInfo = getQuoineAccountInfo();
-      return new AccountInfo(QuoineAdapters.adaptWallet(quoineAccountInfo));
-    }
+    } else { */
+      final FiatAccount[] quoineFiatAccountInfo = getQuoineFiatAccountInfo();
+      return new AccountInfo(QuoineAdapters.adaptFiatAccountWallet(quoineFiatAccountInfo));
+    /* } */
   }
 
   @Override

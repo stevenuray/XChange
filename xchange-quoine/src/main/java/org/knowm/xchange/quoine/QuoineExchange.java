@@ -12,7 +12,7 @@ import si.mazi.rescu.SynchronizedValueFactory;
 
 public class QuoineExchange extends BaseExchange implements Exchange {
 
-  public static final String KEY_USER_ID = "KEY_USER_ID";
+  public static final String KEY_TOKEN_ID = "KEY_TOKEN_ID";
   public static final String KEY_USER_SECRET = "KEY_USER_SECRET";
 
   private SynchronizedValueFactory<Long> nonceFactory = new CurrentTimeNonceFactory();
@@ -34,6 +34,7 @@ public class QuoineExchange extends BaseExchange implements Exchange {
     exchangeSpecification.setSslUri("https://api.quoine.com");
     exchangeSpecification.setExchangeName("Quoine");
     exchangeSpecification.setExchangeSpecificParametersItem("Use_Margin", false);
+    exchangeSpecification.setExchangeSpecificParametersItem("Leverage_Level", "1");
     return exchangeSpecification;
   }
 
