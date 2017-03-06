@@ -33,24 +33,12 @@
 		</license>
 	</licenses>
 
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/timmolter/XChange/issues</url>
-	</issueManagement>
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
+	<repositories>
 		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
-		<downloadUrl>https://oss.sonatype.org/content/groups/public/org/knowm/xchange</downloadUrl>
-	</distributionManagement>
+	</repositories>
 
 	<scm>
 		<connection>scm:git:git@github.com:timmolter/XChange.git</connection>
@@ -138,7 +126,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-
 			<!-- Logging is through SLF4J -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -201,7 +188,6 @@
 				<artifactId>reflections</artifactId>
 				<version>0.9.10</version>
 			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -259,21 +245,6 @@
 			</activation>
 			<build>
 				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
