@@ -4,7 +4,8 @@ import org.knowm.xchange.service.trade.params.TradeHistoryParams;
 
 public class GDAXTradeHistoryParams implements TradeHistoryParams {
 
-  String orderId;
+  //Setting default value to "all" so some trades are returned by default, instead of an error message.
+  String orderId = "all";
 
   public String getOrderId() {
     return orderId;
