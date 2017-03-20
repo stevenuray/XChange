@@ -72,7 +72,7 @@ public class GDAXTradeService extends GDAXTradeServiceRaw implements TradeServic
 
   @Override
   public TradeHistoryParams createTradeHistoryParams() {
-    return null;
+    return new GDAXTradeHistoryParams();
   }
 
   @Override
