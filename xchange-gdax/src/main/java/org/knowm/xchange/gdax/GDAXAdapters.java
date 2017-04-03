@@ -145,8 +145,7 @@ public class GDAXAdapters {
     for (int i = 0; i < coinbaseExFills.length; i++) {
       GDAXFill fill = coinbaseExFills[i];
 
-      // yes, sell means buy for Coinbase reported trades..
-      OrderType type = fill.getSide().equals("sell") ? OrderType.BID : OrderType.ASK;
+      OrderType type = fill.getSide().equals("sell") ? OrderType.ASK : OrderType.BID;
 
       CurrencyPair currencyPair = new CurrencyPair(fill.getProductId().replace("-", "/"));
 
