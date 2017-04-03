@@ -166,8 +166,7 @@ public class GDAXAdapters {
     for (int i = 0; i < coinbaseExTrades.length; i++) {
       GDAXTrade trade = coinbaseExTrades[i];
 
-      // yes, sell means buy for gdax reported trades..
-      OrderType type = trade.getSide().equals("sell") ? OrderType.BID : OrderType.ASK;
+      OrderType type = trade.getSide().equals("sell") ? OrderType.ASK : OrderType.BID;
 
       Trade t = new Trade(type, trade.getSize(), currencyPair, trade.getPrice(), parseDate(trade.getTimestamp()), String.valueOf(trade.getTradeId()));
       trades.add(t);
