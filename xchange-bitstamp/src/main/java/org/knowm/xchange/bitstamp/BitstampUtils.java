@@ -3,6 +3,7 @@ package org.knowm.xchange.bitstamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.knowm.xchange.exceptions.ExchangeException;
 
@@ -11,7 +12,7 @@ import org.knowm.xchange.exceptions.ExchangeException;
  */
 public final class BitstampUtils {
 
-  private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  private static final SimpleDateFormat DATE_FORMAT = buildDateFormatWithTimeZone(TimeZone.getTimeZone("GMT"));
 
   /**
    * private Constructor
@@ -35,4 +36,9 @@ public final class BitstampUtils {
     }
   }
 
+  private static SimpleDateFormat buildDateFormatWithTimeZone(TimeZone timeZone){
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    format.setTimeZone(timeZone);
+    return format;
+  }
 }
